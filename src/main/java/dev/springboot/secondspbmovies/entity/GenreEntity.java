@@ -3,8 +3,12 @@ package dev.springboot.secondspbmovies.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -13,11 +17,12 @@ import jakarta.persistence.Table;
 public class GenreEntity extends BaseEntity {
 	@Column(name = "name")
 	private String name;
+	@JsonBackReference
+	@ManyToOne
+    @JoinColumn(name = "movie_id")
+	private MovieEntity movie;
 	
-	@OneToMany(mappedBy = "genre")
-	private List<MovieEntity> movies = new ArrayList<>();
-
-
+	
 	public String getName() {
 		return name;
 	}
@@ -26,11 +31,13 @@ public class GenreEntity extends BaseEntity {
 		this.name = name;
 	}
 
-	public List<MovieEntity> getMovies() {
-		return movies;
+	public MovieEntity getMovie() {
+		return movie;
 	}
 
-	public void setMovies(List<MovieEntity> movies) {
-		this.movies = movies;
+	public void setMovie(MovieEntity movie) {
+		this.movie = movie;
 	}
+
+	
 }

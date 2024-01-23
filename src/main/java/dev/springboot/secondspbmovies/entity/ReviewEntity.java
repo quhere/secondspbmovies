@@ -3,9 +3,13 @@ package dev.springboot.secondspbmovies.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -14,8 +18,10 @@ public class ReviewEntity extends BaseEntity{
 	@Column(name = "body")
 	private String body;
 	
-	@OneToMany(mappedBy = "review")
-	private List<MovieEntity> movies = new ArrayList<>();
+	@JsonBackReference
+	@ManyToOne
+    @JoinColumn(name = "movie_id")
+	private MovieEntity movie;
 
 	public String getBody() {
 		return body;
@@ -25,12 +31,12 @@ public class ReviewEntity extends BaseEntity{
 		this.body = body;
 	}
 
-	public List<MovieEntity> getMovies() {
-		return movies;
+	public MovieEntity getMovie() {
+		return movie;
 	}
 
-	public void setMovies(List<MovieEntity> movies) {
-		this.movies = movies;
+	public void setMovie(MovieEntity movie) {
+		this.movie = movie;
 	}
-
+	
 }

@@ -1,6 +1,7 @@
 package dev.springboot.secondspbmovies.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,5 +17,13 @@ public class MovieService {
 	
 	public List<MovieEntity> getAllMoivies() {
 		return movieRepository.findAll();	
+	}
+	
+	public Optional<MovieEntity> singleMovie(Long id) {
+		return movieRepository.findById(id);
+	}
+	
+	public Optional<MovieEntity> getMovieByImdb(String imdb) {
+		return movieRepository.findMovieEntityByImdbId(imdb);
 	}
 }

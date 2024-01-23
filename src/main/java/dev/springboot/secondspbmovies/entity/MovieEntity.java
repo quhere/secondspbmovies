@@ -1,10 +1,13 @@
 package dev.springboot.secondspbmovies.entity;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-
+import jakarta.persistence.OneToMany;
 import dev.springboot.secondspbmovies.entity.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -30,17 +33,17 @@ public class MovieEntity extends BaseEntity {
 	@Column(name = "poster")
 	private String poster;
 	
-	@ManyToOne
-    @JoinColumn(name = "genre_id")
-	private GenreEntity genre;
+	@JsonManagedReference
+	@OneToMany(mappedBy = "movie")
+	private List<GenreEntity> genres = new ArrayList<>();
 	
-	@ManyToOne
-    @JoinColumn(name = "backdrop_id")
-	private BackdropEntity backdrop;
+	@JsonManagedReference
+	@OneToMany(mappedBy = "movie")
+	private List<BackdropEntity> backdrops = new ArrayList<>();
 	
-	@ManyToOne
-    @JoinColumn(name = "review_id")
-	private ReviewEntity review;
+	@JsonManagedReference
+	@OneToMany(mappedBy = "movie")
+	private List<ReviewEntity> reviews = new ArrayList<>();
 	
 	
 	public String getImdbId() {
@@ -83,28 +86,31 @@ public class MovieEntity extends BaseEntity {
 		this.poster = poster;
 	}
 
-	public ReviewEntity getReview() {
-		return review;
+	
+
+	public List<ReviewEntity> getReviews() {
+		return reviews;
 	}
 
-	public void setReview(ReviewEntity review) {
-		this.review = review;
+	public void setReviews(List<ReviewEntity> reviews) {
+		this.reviews = reviews;
 	}
 
-	public GenreEntity getGenre() {
-		return genre;
+	public List<GenreEntity> getGenres() {
+		return genres;
 	}
 
-	public void setGenre(GenreEntity genre) {
-		this.genre = genre;
+	public void setGenres(List<GenreEntity> genres) {
+		this.genres = genres;
 	}
 
-	public BackdropEntity getBackdrop() {
-		return backdrop;
+	public List<BackdropEntity> getBackdrops() {
+		return backdrops;
 	}
 
-	public void setBackdrop(BackdropEntity backdrop) {
-		this.backdrop = backdrop;
+	public void setBackdrops(List<BackdropEntity> backdrops) {
+		this.backdrops = backdrops;
 	}
+
 
 }

@@ -5,6 +5,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import dev.springboot.secondspbmovies.service.ReviewService;
 
 @RestController
 @RequestMapping("/api/v1/reviews")
+@CrossOrigin(origins = "*")
 public class ReviewController {
 
 	@Autowired 
@@ -25,8 +27,8 @@ public class ReviewController {
 	public ResponseEntity<ReviewEntity> createReview(@RequestBody ReviewDTO dto) {
 		String reviewBody = dto.getBody();
 		Long movieId = dto.getIdMoive();
-		ReviewEntity riview = reviewService.createReview(reviewBody,movieId);
-		return new ResponseEntity<ReviewEntity>(riview, HttpStatus.CREATED);
+		ReviewEntity review = reviewService.createReview(reviewBody,movieId);
+		return new ResponseEntity<ReviewEntity>(review, HttpStatus.CREATED);
 	}
 	
 }

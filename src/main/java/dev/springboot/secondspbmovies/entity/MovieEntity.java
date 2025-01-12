@@ -16,7 +16,7 @@ import jakarta.persistence.Table;
 
 
 @Entity
-@Table(name = "movie")
+@Table(name = "movies")
 public class MovieEntity extends BaseEntity {
 	@Column(name = "imdbId")
 	private String imdbId;

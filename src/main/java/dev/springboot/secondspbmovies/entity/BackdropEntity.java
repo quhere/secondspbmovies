@@ -13,7 +13,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "backdrop")
+@Table(name = "backdrops")
 public class BackdropEntity extends BaseEntity{
 	@Column(name = "name")
 	private String name;

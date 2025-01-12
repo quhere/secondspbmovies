@@ -29,8 +29,8 @@ public class MovieConverter {
 	
 	public MovieDTO toDTO(MovieEntity entity) {
 		MovieDTO dto = new MovieDTO();
-		if (entity.getId() != null) {
-			dto.setId(entity.getId());
+		if (entity.getBase_id() != null) {
+			dto.setId(entity.getBase_id());
 		}
 		dto.setImdbId(entity.getImdbId());
 		dto.setTitle(entity.getTitle());

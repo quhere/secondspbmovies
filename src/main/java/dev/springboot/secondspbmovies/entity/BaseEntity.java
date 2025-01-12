@@ -3,17 +3,10 @@ package dev.springboot.secondspbmovies.entity;
 import java.util.Date;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 //đánh dấu rằng đây là "cha"
 @MappedSuperclass 
@@ -24,7 +17,7 @@ public abstract class BaseEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long base_id;
 	
 	@Column
 //	@CreatedBy
@@ -42,8 +35,8 @@ public abstract class BaseEntity {
 //	@LastModifiedDate
 	private Date modifiedDate;
 	
-	public Long getId() {
-		return id;
+	public Long getBase_id() {
+		return base_id;
 	}
 
 	public String getCreatedBy() {
